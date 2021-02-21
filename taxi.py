@@ -48,7 +48,7 @@ def del_or_add_driver() -> Response:
         try:
             print('Delete', file['id'])
             if str(driver.select_driver(file['id'])) == '[]':
-                return Response('Объект не найден в базе ', status=404)
+                return Response('Объект в базе не найден ', status=404)
             driver.delete_driver(file['id'])
             return Response('Удалено', status=204)
         except Exception:
@@ -88,9 +88,9 @@ def client() -> Response:
         try:
             print('Delete', file['id'])
             if str(client.select_client(file['id'])) == '[]':
-                return Response('Объект не найден в базе', status=404)
+                return Response('Объект в базе не найден', status=404)
             client.delete_client(file['id'])
-            return Response('Deleted', status=201)
+            return Response('Удалено', status=204)
         except Exception:
             return Response('Неправильный запрос', status=400)
     else:
@@ -123,7 +123,7 @@ def show_order(order_id: int) -> Any:
             return Response('Изменено', status=200)
         if converter(ans)['status'] == 'in_progress' and file['status'] in ['done', 'cancelled']:
             order.update_order_in_progress(order_id, file['status'])
-            return Response('Изменено', status=200)
+            return Response('Изменено!', status=200)
         return Response("Неправильный запрос", status=400)
 
 
@@ -148,4 +148,4 @@ def order() -> Response:
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5050)
+    app.run()

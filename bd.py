@@ -9,7 +9,7 @@ from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm import sessionmaker
 
 # engine - пул соединений к БД
-engine = create_engine('postgresql://postgresql:postgresql@localhost:5432/mydatabase')
+engine = create_engine('postgresql://postgres:postgres@localhost:5432/mydatabase')
 
 # declarative_base - фабричная функция, возвращающая базовый класс, от которого произойдет наследование класса с
 # моделью.
